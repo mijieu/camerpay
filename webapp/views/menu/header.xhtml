@@ -1,0 +1,17 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<div class="jumbotron">
+		<div class="container-fluid imagesBlock">
+			<p:imageSwitch effect="fade" id="fadeEffect" speed="1500"
+				slideshowSpeed="1000">
+				<ui:repeat value="#{imageViewHandler.images}" var="image"
+					id="fadeEffectImages">
+					<p:graphicImage name="#{image}" library="images" cache="false"
+						id="image" width="100%" />
+				</ui:repeat>
+			</p:imageSwitch>
+		</div>
+	</div>
+</ui:composition>
