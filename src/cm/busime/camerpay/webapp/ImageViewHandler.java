@@ -1,4 +1,4 @@
-package cm.busime.camerpay.model;
+package cm.busime.camerpay.webapp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ public class ImageViewHandler {
     @PostConstruct
     public void init() {
         images = new ArrayList<String>();
-        for (int i=1; i<7; i++) {
+        for (int i=1; i<6; i++) {
         	images.add("content_show_"+i+".jpg");
         }
     }

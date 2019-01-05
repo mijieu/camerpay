@@ -1,71 +1,128 @@
+/*====================================================
+DEFAULT VALUES:
+
+Font Family                 : Roboto Condensed
+
+Greenish Blue               : #34c6d3       (Buttons, Icons, Links, Lines & Backgrounds)
+Steel Gray                  : #41464b       (Headings)
+Blue Bayoux                 : #64707b       (Paragraphs)
+White                       : #fff          (Text With Black Backgrounds)
+Black                       : #000 
+
+======================================================*/
+
+
+/* General CSS */
+
+* {
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	color: #41464b;
+}
+
+html,
 body {
-	font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
-		Helvetica Neue, sans-serif !important;
-	font-size: 12px;
-	padding-top: 50px;
-	margin: 0;
-	background-color: #e0e0eb;
+    height: 100%;
 }
 
-/*#background {
-	z-index: 1;
-}*/
-
-#background1{
-	/*content: "";
-	position:absolute;
-	z-index: -1;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-image: url("images/bg.jpg");
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	opacity: 0.4;
-	filter: alpha(opacity=40);
-	height: 100%;
-	width: 100%;**/	
-	width: 100%;
-	height: 100%;
-	position:absolute;
-	z-index: -1;
-	background: url("images/bg.jpg") no-repeat center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	opacity: 0.4;
-	filter: alpha(opacity=40);
-	
-	/*IE hack*/
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/bg.jpg',
-		sizingMethod='scale');
-	-ms-filter:
-		"progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/bg.jpg', sizingMethod='scale')";
+body {
+    font-family: "Roboto Condensed", "sans-serif";
 }
 
-.mainWrapperwsd {
-	background-color: transparent;
-	z-index: 0;
-	opacity: 1;
-	filter: alpha(opacity=100);
+p {
+    color: #64707b;
+    font-size: 16px;
+    font-weight: 300;
 }
 
-.sub-header {
-	padding-bottom: 10px;
-	border-bottom: 1px solid #eee;
+h3 {
+    color: #41464b;
+    text-transform: uppercase;
 }
 
-.footer-bg {
-	background-color: transparent;
-	border-color: transparent;
-	margin-top: -15px;
+/*====================================================
+                       MAIN CONTENT
+======================================================*/
+#home {
+    height: 100%;
 }
 
-.img-fluid {
-	max-width: 100%;
-	height: 100%;
+#home-cover {
+    height: 100%;
+}
+
+#home-content-box {
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+.bg-parallax {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+#home-content-box-inner {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#home-heading h3 {
+    color: #fff;
+    font-size: 55px;
+    font-weight: 700;
+    margin: 20px 0 20px 0;
+}
+
+.content-box {
+    padding: 60px 0 60px 0;
+}
+
+.content-tilte h3{
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+    margin: 40px 0 15px 0;
+}
+
+/*====================================================
+                       NAVIGATION
+======================================================*/
+.navbar-fixed-top{
+	background-color: #41464b;
+}
+
+.navbar-nav>li>a {
+    color: #fff;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    ine-height: 1.1;
+}
+
+.navbar-nav>li>a:hover,
+.navbar-nav>li>a:focus {
+    background: none;
+    border: 0.2px solid #41464b;
+    border-bottom-color:white;
+}
+
+.navbar-toggle {
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid #fff;
+    border-radius: 0;
+}
+
+.navbar-toggle .icon-bar {
+    background-color: #fff;
+}
+
+.navbar-collapse {
+    max-height: none !important;
 }
 
 .dropdown-menu {
@@ -89,205 +146,192 @@ ul.dropdown-menu {
 	background-color: transparent;
 }
 
-/*
- * Sidebar
- */
-
-/* Hide for mobile, show later */
-.sidebar {
-	display: none;
+.nav .open > a,
+.nav .open > a:hover {
+  background-color: transparent;
 }
 
-@media ( min-width : 600px) {
-	.sidebar {
-		position: fixed;
-		top: 51px;
-		bottom: 0;
-		left: 0;
-		z-index: 1000;
-		display: block;
-		padding: 20px;
-		overflow-x: hidden;
-		overflow-y: auto;
-		/* Scrollable contents if viewport is shorter than content. */
-		background-color: #f5f5f5;
-		border-right: 1px solid #eee;
-	}
+/*====================================================
+                       SERVICES
+======================================================*/
+.service-item{
+    padding: 20px 0 20px 0;
+    margin-bottom: 20px;
+    cursor: pointer;
 }
 
-/* Sidebar navigation */
-.nav-sidebar {
-	margin-right: -21px; /* 20px padding + 1px border */
-	margin-bottom: 20px;
-	margin-left: -20px;
+.service-item-icon i{
+    color: #34c6d3;
+    float: left;
+    padding: 15px;
+    margin-right: 25px;
+    width: 75px;
+    height: 75px;
+    text-align: center;
 }
 
-.nav-sidebar>li>a {
-	padding-right: 20px;
-	padding-left: 20px;
+.service-item:hover .service-item-icon i{
+    color: #fff;
+    background-color: #34c6d3;
 }
 
-.nav-sidebar>.active>a {
-	color: #fff;
-	background-color: #428bca;
+.service-item-tile h3{
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0 0 10px 0;
 }
 
-/*
- * Main content
- */
-.main {
-	padding: 20px;
+.service-item-desc p{
+    margin: 0;
+    padding-left: 85px;
 }
 
-@media ( min-width : 768px) {
-	.main {
-		padding-right: 40px;
-		padding-left: 40px;
-	}
+
+/*====================================================
+                       FOOTER
+======================================================*/
+footer {
+    background-color: #41464b;
+    padding-top: 30px;
+    margin: 0 0 0 0;
+    color: #fff;
 }
 
-.main .page-header {
-	margin-top: 0;
+address {
+    color: #fff;
+    letter-spacing: 1px;
+}
+address strong { font-size: 16px; }
+address strong,
+#phone-fax-email strong {
+    letter-spacing: 1px;
 }
 
-.menuBar {
-	height: 70px !important;
+/*====================================================
+                        SINGNIN FORM
+======================================================*/
+#signupContent {
+	margin-top: 80px;
 }
 
-.menuBarBanner {
-	position: relative !important;
-	z-index: -1 !important;
-	box-shadow: 0 1px 0 #DBDBDB !important;
+#signupContent h3{
+	text-align: left;
+    font-size: 27px;
+    font-weight: 700;
+    padding: 40px 0;
 }
 
-.menuBarTop {
-	display: table !important;
-	width: 100% !important;
+#signform .ui-inputfield {
+    background: transparent;
+    border-radius: 0;
+    border-color: #41464b;
+    font-size: 17px;
+    font-weight: 300;
+    padding: 8px 16px;
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 }
 
-.menuBarLogo {
-	display: table-cell !important;
-	vertical-align: middle !important;
+#signform .ui-widget{
+	font-family: "Roboto Condensed", "sans-serif";
 }
 
-.menuBarSpacer {
-	display: table-cell !important;
-	width: 100% !important;
-	vertical-align: middle !important;
+#signform .form-control{
+	display: block;
+    height: 34px;
+    line-height: 1.42857143;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 
-.menuBarItemBlock {
-	display: table-cell !important;
-	vertical-align: middle !important;
-}
-
-.menuBarItemBlock2 {
-	display: table !important;
-	list-style: none !important;
-	padding: 0px !important;
-	margin: 0px !important;
-	height: 64px !important;
-}
-
-.menuBarItem {
-	display: table-cell !important;
-}
-
-.imagesBlock {
-	height: 500px;
-	overflow: hidden;
-	padding: 0px;
-}
-
-/*.imagesBlock img {
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	width: 100%;
-}*/
-
-@media ( min-width : 768px) {
-	.imagesBlock {
-		height: 500px;
-		overflow: hidden;
-		padding: 0px;
-	}
-}
-
-.jumbotron {
-    padding-top: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-bottom: 10px;
-    margin-bottom: 0px;
-    background-color: transparent;    
-  }
-
-@media screen and (min-width: 768px) {
-  .jumbotron {
-    padding-top: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-bottom: 5px;
-    margin-bottom: 0px;
+#signform .ui-button-text-only .ui-button-text {
     background-color: transparent;
-  }
+    line-height: 1.333333;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
 }
 
-.slogan {
-	position: absolute;
-	color: #A2A1A1;
-	font-weight: bold;
-	bottom: 30px;
-	right: 40px;
+.signformbtn{
+	padding-top: 40px;
+	padding-bottom: 40px;
 }
 
-.titleH3 {
-	font-weight: 700 !important;
-	/*margin-bottom: 0px !important;*/
-	font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
-		Helvetica Neue, sans-serif !important;
-	font-size: 28px !important;
-	line-height: 32px !important;
-	letter-spacing: -0.6px !important;
-	padding-top: 2px !important;
-	padding-bottom: 2px !important;
-	color: #484848 !important;
+.signformbtn .ui-button {
+	border-radius: 0;
+	border-width: 1px;
 }
 
-.main {
-	padding: 20px;
+.signformbtn .signformbtnsub {
+    background: transparent;
+    border-radius: 0;
+    font-size: 17px;
+    font-weight: 300;
+    padding: 8px 16px;
+    margin-bottom: 20px;
+    border: 1px solid #41464b;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 }
 
-@media ( min-width : 768px) {
-	.main {
-		padding-right: 40px;
-		padding-left: 40px;
-	}
+.signformbtn .ui-state-focus,
+.signformbtn .ui-state-hover{
+	background: #41464b;
 }
 
-.main .page-header {
-	margin-top: 0;
+/*====================================================
+                        BUTTONS (Generic)
+======================================================*/
+
+.btn-general {
+    border-width: 2px;
+    border-radius: 0;
+    padding: 12px 26px 12px 26px;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: uppercase;
 }
 
-/*
- * Placeholder dashboard ideas
- */
-.placeholders {
-	margin-bottom: 30px;
-	text-align: center;
+.btn-white {
+    border-color: #fff;
+    color: #fff;
 }
 
-.placeholders h4 {
-	margin-bottom: 0;
+.btn-white:hover,
+.btn-white:focus {
+    background-color: #fff;
+    color: #41464b;
 }
 
-.placeholder {
-	margin-bottom: 20px;
+.btn-sign {
+    border-color: #41464b;
+    color: #41464b;
 }
 
-.placeholder img {
-	display: inline-block;
-	border-radius: 50%;
+.btn-sign:hover,
+.btn-sign:focus {
+    background-color: #41464b;
+    color: #fff;
+}
+
+.btn-blue {
+    border-color: #34c6d3;
+    color: #34c6d3;
+}
+
+.btn-blue:hover,
+.btn-blue:focus {
+    background-color: #34c6d3;
+    color: #fff;
+}
+
+.btn-back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 22px;
+    padding: 3px 15px;
+    border-radius: 0;
+    display: none;
 }

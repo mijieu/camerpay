@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	template="/templates/masterLayout.xhtml">
+	<ui:define name="content">
+		<section id="signup">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<div id="signupContent">
+							<h3>#{msg['signup']}</h3>
+							<h:form id="signform">
+								<p:inputText value="#{userBean.firstName}" required="true"
+									id="fname" placeholder="#{msg['signup.firstname']}"/>
+								<p:message for="fname" />
+								<p:inputText value="#{userBean.middleName}" id="mname"
+									placeholder="#{msg['signup.middlename']}"/>
+								<p:message for="mname" />
+								<p:inputText value="#{userBean.lastName}" required="true"
+									id="lname" placeholder="#{msg['signup.lastname']}"/>
+								<p:message for="lname" />
+								<p:inputText value="#{userBean.email}" required="true"
+									id="email" validator="#{userBean.validateEmail}"
+									placeholder="#{msg['signup.email']}" />
+								<p:message for="email" />
+								<p:password id="feedback" value="#{userBean.password}"
+									feedback="true" placeholder="#{msg['signup.pwd']}"
+									promptLabel="#{msg['signup.pwd.prompt']}"
+									weakLabel="#{msg['signup.pwd.weak']}"
+									goodLabel="#{msg['signup.pwd.good']}"
+									strongLabel="#{msg['signup.pwd.strong']}"/>
+								<div class="signformbtn">
+									<h:commandButton value="#{msg['signup.submit']}" action="#{userBean.sign}" styleClass="btn-general signformbtnsub btn-sign"/>
+								</div>
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</ui:define>
+</ui:composition>

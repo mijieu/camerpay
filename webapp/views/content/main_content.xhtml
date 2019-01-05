@@ -2,45 +2,72 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html">
-	<div class="row" style="background-color: transparent">
-		<div class="col-md-3"></div>
-		<div class="col-md-9 col-md-offset-3">
-			<h3 class="titleH3">#{msg['content.title']}</h3>
+	<section id="home">
+		<div id="homes-cover"
+			style="height: 100%; background-image: url(https://picsum.photos/1200/900/?random)"
+			class="bg-parallax">
+			<div id="home-content-box">
+				<div id="home-content-box-inner" class="text-center">
+					<div id="home-heading">
+						<h3>#{msg['home.greetings']}</h3>
+					</div>
+					<div id="home-btn">
+						<a class="btn btn-lg btn-general btn-white"
+							href="views/content/signup.jsf" role="button"
+							title="#{msg['home.signup']}"> #{msg['home.signup']} </a>
+					</div>
+				</div>
+			</div>
 		</div>
-		<ui:insert name="content" />
-	</div>
-	<div class="row">
-		<div class="col-md-2 col-md-offset-3">
-			<h2>Headings</h2>
-			<p>Donec id elit non mi porta gravida at eget metus. Fusce
-				dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-				ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-				magna mollis euismod. Donec sed odio dui.</p>
-			<p>
-				<a class="btn btn-default" href="#" role="button">View details »</a>
-			</p>
+	</section>
+	<section id="services">
+		<div id="content-box">
+			<div class="content-tilte">
+				<h3>#{msg['home.title']}</h3>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="service-item">
+							<div class="service-item-icon">
+								<i class="fa fa-lock fa-5x"></i>
+							</div>
+							<div class="service-item-title">
+								<h3>#{msg['serv.secure']}</h3>
+							</div>
+							<div class="service-item-desc">
+								<p>#{msg['serv.secure.desc']}</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="service-item">
+							<div class="service-item-icon">
+								<i class="fa fa-leaf fa-5x"></i>
+							</div>
+							<div class="service-item-title">
+								<h3>#{msg['serv.simple']}</h3>
+							</div>
+							<div class="service-item-desc">
+								<p>#{msg['serv.simple.desc']}</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="service-item">
+							<div class="service-item-icon">
+								<i class="fa fa-tachometer fa-5x"></i>
+							</div>
+							<div class="service-item-title">
+								<h3>#{msg['serv.fast']}</h3>
+							</div>
+							<div class="service-item-desc">
+								<p>#{msg['serv.fast.desc']}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="col-md-2">
-			<h2>Heading</h2>
-			<p>Donec id elit non mi porta gravida at eget metus. Fusce
-				dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-				ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-				magna mollis euismod. Donec sed odio dui.</p>
-			<p>
-				<a class="btn btn-default" href="#" role="button">View details »</a>
-			</p>
-		</div>
-		<div class="col-md-2">
-			<h2>Heading</h2>
-			<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
-				egestas eget quam. Vestibulum id ligula porta felis euismod semper.
-				Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum
-				nibh, ut fermentum massa justo sit amet risus.</p>
-			<p>
-				<a class="btn btn-default" href="#" role="button">View details »</a>
-			</p>
-		</div>
-	</div>
-
-	<hr />
+	</section>
 </ui:composition>

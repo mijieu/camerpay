@@ -8,7 +8,7 @@
 	<packaging>war</packaging>
 
 	<properties>
-		<jboss.deploy.folder>C:\DEV\jboss\jboss-eap-7.0\standalone\deployments</jboss.deploy.folder>
+		<jboss.deploy.folder>/Users/tchayepa/DEV/jboss/jboss-eap-7.0/standalone/deployments</jboss.deploy.folder>
 		<java.version.source>1.8</java.version.source>
 		<java.version.target>1.8</java.version.target>
 		<mojarra.version>2.2.8</mojarra.version>
@@ -144,6 +144,12 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.0.1</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+   			<groupId>javax.persistence</groupId>
+   			<artifactId>persistence-api</artifactId>
+   			<version>1.0.2</version>
+   			<scope>provided</scope>
 		</dependency>
 
 		<dependency>

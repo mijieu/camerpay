@@ -1,5 +1,6 @@
-package cm.busime.camerpay.model;
+package cm.busime.camerpay.domain;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -10,8 +11,10 @@ import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 
 import cm.busime.camerpay.domain.Local;
 
@@ -20,6 +23,8 @@ import cm.busime.camerpay.domain.Local;
 public class LocaleService implements Serializable {
 
 	private static final long serialVersionUID = 20120517L;
+	
+	private static Logger log = Logger.getLogger(LocaleService.class.getName());
 
 	private List<Local> locals;
 	private List<Local> availbleLocals;
@@ -35,8 +40,7 @@ public class LocaleService implements Serializable {
 		while (suppertedLocale.hasNext()) {
 			Locale loc = suppertedLocale.next();
 			availbleLocals.add(new Local(1, loc.getLanguage(), loc.getLanguage()+".png"));
-			Logger.getLogger(LocaleService.class.getName()).
-			log(Level.INFO, "Handled language: " + loc.getLanguage());
+			log.log(Level.INFO, "Handled language: " + loc.getLanguage());
 		}
 //		availbleLocals.add(new Local(1, "fr", "fr.png"));
 //		availbleLocals.add(new Local(2, "de", "de.png"));
@@ -45,8 +49,7 @@ public class LocaleService implements Serializable {
 		locale = FacesContext.getCurrentInstance().getExternalContext().getRequestLocale();
 		String lang = locale.getLanguage();
 		currentLang = lang;
-		Logger.getLogger(LocaleService.class.getName()).
-		log(Level.INFO, "Initialize localService - done!");
+		log.log(Level.INFO, "Initialize localService - done!");
 	}
 
 	public List<Local> getLocals() {
@@ -70,8 +73,7 @@ public class LocaleService implements Serializable {
 		locale = new Locale(language);
 		currentLang = language;
 		FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
-		Logger.getLogger(LocaleService.class.getName()).
-		log(Level.INFO, "Current language " + currentLang);
+		log.log(Level.INFO, "Current language " + currentLang);
 	}
 
 	public String getCurrentLang() {
@@ -82,11 +84,11 @@ public class LocaleService implements Serializable {
 		this.currentLang = currentLang;
 	}
 	
-	public String updateLang (String lang) {
+	public void updateLang (String lang) throws IOException {
 		setLanguage(lang);
-		Logger.getLogger(LocaleService.class.getName()).
-		log(Level.INFO, "Update language to " + lang);
-		return "";
+		log.log(Level.INFO, "Update language to " + lang);
+		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+	    ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
 	}
 	
 	
