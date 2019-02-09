@@ -10,6 +10,10 @@
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
 		<param-value>Development</param-value>
 	</context-param>
+    <context-param>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>client</param-value>
+    </context-param>
 	<context-param>
 		<param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
 		<param-value>-1</param-value>
@@ -84,6 +88,14 @@
 		<mime-type>application/xhtml+xml</mime-type>
 	</mime-mapping>
 	<mime-mapping>
+		<extension>jsp</extension>
+		<mime-type>application/xml</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>map</extension>
+		<mime-type>application/json</mime-type>
+	</mime-mapping>
+	<mime-mapping>
 		<extension>eot</extension>
 		<mime-type>application/vnd.ms-fontobject</mime-type>
 	</mime-mapping>
@@ -128,8 +140,8 @@
 
 	<!-- Character Encoding Filter -->
 	<filter>
-		<filter-name>CharacterEncodingFilter</filter-name>
-		<filter-class>cm.busime.camerpay.webapp.CharacterEncodingFilter</filter-class>
+		<filter-name>AppFilter</filter-name>
+		<filter-class>cm.busime.camerpay.webapp.AppFilter</filter-class>
 		<init-param>
 			<description>override any encodings from client</description>
 			<param-name>ignore</param-name>
@@ -142,7 +154,7 @@
 		</init-param>
 	</filter>
 	<filter-mapping>
-		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-name>AppFilter</filter-name>
 		<url-pattern>*.jsf</url-pattern>
 	</filter-mapping>
 
@@ -156,12 +168,35 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>/javax.faces.resource/*</url-pattern>
 		<url-pattern>*.jsf</url-pattern>
+		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
 
 	<!-- Session timeout -->
 	<session-config>
-		<session-timeout>60</session-timeout>
+		<session-timeout>3</session-timeout>
 	</session-config>
+	
+	<!-- Begin Security configuration -->
+	<security-constraint>
+		<display-name>User Domain</display-name>
+		<web-resource-collection>
+			<web-resource-name>user</web-resource-name>
+			<description>User access</description>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<realm-name>camerpayRealm</realm-name>
+		<form-login-config>
+			<form-login-page>/views/content/login.xhtml</form-login-page>
+			<form-error-page>/views/errors/loginError.xhml</form-error-page>
+		</form-login-config>
+	</login-config>
+	<!-- End Security Configuration -->
 
 	<!-- Welcome files -->
 	<welcome-file-list>

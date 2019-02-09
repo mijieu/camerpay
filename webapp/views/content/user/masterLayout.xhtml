@@ -32,15 +32,15 @@
 <h:body>
 	<f:view locale="#{localeService.locale}" id="mView">
 		<header>
-			<ui:insert name="header">
-				<ui:include src="/views/menu/menubar.xhtml" />
+			<ui:insert name="logedUserHeader">
+				<ui:include src="/views/content/user/menu/menubar.xhtml" />
 			</ui:insert>
 		</header>
-		<ui:insert name="content">
-			<ui:include src="/views/content/main_content.xhtml" />
+		<ui:insert name="logedUserContent">
+			<ui:include src="/views/content/user/home.xhtml" />
 		</ui:insert>
 		<footer>
-			<ui:insert name="footer">
+			<ui:insert name="logedUserFooter">
 				<ui:include src="/views/menu/footer.xhtml" />
 			</ui:insert>
 		</footer>

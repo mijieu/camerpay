@@ -12,27 +12,34 @@
 						<div id="signupContent">
 							<h3>#{msg['signup']}</h3>
 							<h:form id="signform">
-								<p:inputText value="#{userBean.firstName}" required="true"
-									id="fname" placeholder="#{msg['signup.firstname']}"/>
-								<p:message for="fname" />
-								<p:inputText value="#{userBean.middleName}" id="mname"
+								<p:message id="msgfname" for="fname" requiredMessage="#{msg['signup.field.required']}"/>
+								<p:inputText value="#{register.person.TXTFIRSTNAME}" required="true"
+									id="fname" placeholder="#{msg['signup.firstname']}">
+									<f:ajax render="@this msgfname"/>
+								</p:inputText>
+								<p:inputText value="#{register.person.TXTMIDDLENAME}" id="mname"
 									placeholder="#{msg['signup.middlename']}"/>
-								<p:message for="mname" />
-								<p:inputText value="#{userBean.lastName}" required="true"
+								<p:message for="lname" requiredMessage="#{msg['signup.field.required']}"/>
+								<p:inputText value="#{register.person.TXTLASTNAME}" required="true"
 									id="lname" placeholder="#{msg['signup.lastname']}"/>
-								<p:message for="lname" />
-								<p:inputText value="#{userBean.email}" required="true"
-									id="email" validator="#{userBean.validateEmail}"
-									placeholder="#{msg['signup.email']}" />
-								<p:message for="email" />
-								<p:password id="feedback" value="#{userBean.password}"
+								<p:message id="msgemail" for="email" requiredMessage="#{msg['signup.field.required']}"/>
+								<p:inputText value="#{register.person.TXTEMAIL}" required="true"
+									id="email" validator="#{register.validateEmail}"
+									placeholder="#{msg['signup.email']}" >
+									<f:ajax render="@this msgemail"/>
+								</p:inputText>
+								<p:message id="msgpwd" for="password" requiredMessage="#{msg['signup.field.required']}"/>
+								<p:password id="password" value="#{register.person.TXTPASSWORD}"
+									required="true"
 									feedback="true" placeholder="#{msg['signup.pwd']}"
 									promptLabel="#{msg['signup.pwd.prompt']}"
 									weakLabel="#{msg['signup.pwd.weak']}"
 									goodLabel="#{msg['signup.pwd.good']}"
-									strongLabel="#{msg['signup.pwd.strong']}"/>
+									strongLabel="#{msg['signup.pwd.strong']}">
+									<f:ajax execute="@this" render="msgpwd"/>
+								</p:password>
 								<div class="signformbtn">
-									<h:commandButton value="#{msg['signup.submit']}" action="#{userBean.sign}" styleClass="btn-general signformbtnsub btn-sign"/>
+									<h:commandButton value="#{msg['signup.submit']}" action="#{register.sign}" styleClass="btn-general signformbtnsub btn-sign"/>
 								</div>
 							</h:form>
 						</div>

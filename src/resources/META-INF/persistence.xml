@@ -5,8 +5,8 @@
 	<persistence-unit name="CAMERPAYPU" transaction-type="JTA">
 		<jta-data-source>java:jboss/CAMERPAYPU</jta-data-source>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
-		<properties>
+		<!--properties>
 			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
-		</properties>
+		</properties-->
 	</persistence-unit>
 </persistence>

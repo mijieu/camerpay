@@ -32,6 +32,22 @@
             org.primefaces.application.exceptionhandler.PrimeExceptionHandlerELResolver
         </el-resolver>
     </application>
+    <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>show_user_home</from-outcome>
+			<to-view-id>/views/content/user/home.jsf</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+    <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>show_login</from-outcome>
+			<to-view-id>/views/content/login.jsf</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 
     <factory>
         <exception-handler-factory>

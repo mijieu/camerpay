@@ -10,9 +10,9 @@ import java.util.logging.Logger;
 import javax.faces.context.FacesContext;
 
 @SuppressWarnings("serial")
-public abstract class AbstractServiceBean implements Serializable{
+public abstract class AbstractServiceWeb implements Serializable{
 	
-	private static Logger log = Logger.getLogger(AbstractServiceBean.class.getName());
+	private static Logger log = Logger.getLogger(AbstractServiceWeb.class.getName());
 	
 	private String onLoadJSScript = "";
 	
@@ -31,7 +31,6 @@ public abstract class AbstractServiceBean implements Serializable{
     }
 
     public void resetOnLoadJSScript() {
-
         this.setOnLoadJSScript("");
     }
 
