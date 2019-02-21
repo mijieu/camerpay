@@ -18,7 +18,6 @@ Black                       : #000
 	margin: 0px;
 	padding: 0px;
 	border: 0px;
-	color: #41464b;
 }
 
 html,
@@ -26,7 +25,7 @@ body {
     height: 100%;
 }
 
-body {
+body, .ui-widget {
     font-family: "Roboto Condensed", "sans-serif";
 }
 
@@ -151,6 +150,37 @@ ul.dropdown-menu {
   background-color: transparent;
 }
 
+.user-header-block{
+	padding: 5px 0 5px 0;
+	margin-bottom: 5 px;
+	cursor: pointer;
+}
+
+.user-header-icon{
+	float: left;
+	color: #EFE2B5;
+	z-index: 5000;
+}
+
+.loginName {
+    width: 100px;
+    white-space: nowrap;
+    /* overflow: hidden; */
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: baseline;
+    /* margin-bottom: 5px; */
+}
+
+.user-header-logout{
+	font-size: 10px;
+    letter-spacing: 1px;
+    font-weight: 500;
+    line-height: 1;
+    color: #EFE2B5;
+    padding: 20px 0 0 10px;	
+}
+
 /*====================================================
                        SERVICES
 ======================================================*/
@@ -256,7 +286,6 @@ address strong,
 
 .signformbtn{
 	padding-top: 40px;
-	padding-bottom: 40px;
 }
 
 .signformbtn .ui-button {
@@ -277,6 +306,64 @@ address strong,
 
 .signformbtn .ui-state-focus,
 .signformbtn .ui-state-hover{
+	background: #41464b;
+}
+
+/*====================================================
+                        LOGIN FORM
+======================================================*/
+#loginModalform .ui-inputfield {
+    background: transparent;
+    border-radius: 0;
+    border-color: #41464b;
+    font-size: 17px;
+    font-weight: 300;
+    padding: 8px 16px;
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+
+#loginModalform  .ui-widget{
+	font-family: "Roboto Condensed", "sans-serif";
+}
+
+#loginModalform  .form-control{
+	display: block;
+    height: 34px;
+    line-height: 1.42857143;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+#loginModalform .ui-button-text-only .ui-button-text {
+    background-color: transparent;
+    line-height: 1.333333;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+}
+
+.signformbtn .ui-button {
+	border-radius: 0;
+	border-width: 1px;
+}
+
+.loginModalformbtn .loginModalformbtnsub {
+    background: transparent;
+    border-radius: 0;
+    font-size: 17px;
+    font-weight: 300;
+    padding: 8px 16px;
+    margin-bottom: 20px;
+    margin-right: 15px;
+    border: 1px solid #41464b;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+
+.loginModalformbtn .ui-state-focus,
+.loginModalformbtn .ui-state-hover{
 	background: #41464b;
 }
 
@@ -334,4 +421,18 @@ address strong,
     padding: 3px 15px;
     border-radius: 0;
     display: none;
+}
+
+
+/*====================================================
+                  MODAL PANEL
+======================================================*/
+.ui-widget-header {
+	background: #41464b;
+	font-weight: 400;
+	line-height:1.1;
+}
+
+.ui-dialog .ui-dialog-title {
+    color: #fff;
 }

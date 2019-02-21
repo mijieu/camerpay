@@ -2,31 +2,34 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	template="/templates/masterLayout.xhtml">
-	<ui:define name="content">
-		<section id="login">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6">
-						<div id="signupContent">
-							<h3>#{msg['login']}</h3>
-							<h:form id="loginform">
-								<p:messages id="loginMsg" showDetail="true" closable="true">
-							        <p:autoUpdate />
-							    </p:messages>
-								<h:inputText value="#{login.email}" autofocus="true"
-									id="loginEmail" placeholder="#{msg['login.email']}"/>
-								<h:inputSecret id="loginPwd" value="#{login.password}"
-									placeholder="#{msg['login.pwd']}"/>
-								<div class="signformbtn">
-									<h:commandButton value="#{msg['login.login']}" action="#{login.login}" styleClass="btn-general signformbtnsub btn-sign"/>
-								</div>
-							</h:form>
-						</div>
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	<p:dialog widgetVar="logInModal" modal="true" header="#{msg['login']}"
+		class="modal-dialog modial-sm" showEffect="explode"
+		hideEffect="bounce" resizable="false">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h:form id="loginModalform">
+					<p:messages id="loginModalMsg" showDetail="true" closable="true">
+						<p:autoUpdate />
+					</p:messages>
+					<p:inputText value="#{login.email}" autofocus="true"
+						id="loginEmail" placeholder="#{msg['login.email']}" />
+					<p:password id="loginModalPwd" value="#{login.password}"
+						placeholder="#{msg['login.pwd']}" />
+					<div class="loginModalformbtn">
+						<h:commandButton value="#{msg['login.login']}"
+							action="#{login.login}"
+							styleClass="btn-general loginModalformbtnsub btn-sign" />
+						<!--h:commandButton value="#{msg['login.cancel']}"
+							styleClass="btn-general loginModalformbtnsub btn-sign" >
+							<f:ajax onevent="function(event){
+  												event.preventDefault();
+  												PF('logInModal).hide(); 
+  												return false;}"/>
+						</h:commandButton-->
 					</div>
-				</div>
+				</h:form>
 			</div>
-		</section>
-	</ui:define>
+		</div>
+	</p:dialog>
 </ui:composition>

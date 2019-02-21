@@ -182,7 +182,7 @@
 		<web-resource-collection>
 			<web-resource-name>user</web-resource-name>
 			<description>User access</description>
-			<url-pattern>/*</url-pattern>
+			<url-pattern>/views/content/user/*</url-pattern>
 		</web-resource-collection>
 		<user-data-constraint>
 			<transport-guarantee>CONFIDENTIAL</transport-guarantee>

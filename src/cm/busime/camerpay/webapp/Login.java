@@ -1,7 +1,6 @@
 package cm.busime.camerpay.webapp;
 
 import java.io.Serializable;
-import java.lang.management.ManagementFactory;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,12 +17,9 @@ import javax.inject.Named;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
-import javax.json.JsonValue;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.Response;
 
-import cm.busime.camerpay.db.LoginService;
-import cm.busime.camerpay.model.TBLPERSON;
 import cm.busime.camerpay.restclient.RestClient;
 import cm.busime.camerpay.restclient.RestClientConfiguration;
 import cm.busime.camerpay.restclient.RestClientProducer;
@@ -38,9 +34,6 @@ public class Login implements Serializable{
 	
 	private String email = "";
 	private String password;
-	
-	@Inject 
-	private LoginService loginService;
 	
 	@Inject
 	@RestClientConfiguration(externalService = RestClientProducer.CMR_PAY_SERVICE)

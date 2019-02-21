@@ -8,7 +8,7 @@
 				<div id="busime-nav-wrapper">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target="#navbar" aria-expanded="false"
+							data-target="#navbar-title" aria-expanded="false"
 							aria-controls="navbar">
 							<span class="sr-only">Toggle navigation</span> 
 							<span class="icon-bar"></span> 
@@ -20,13 +20,14 @@
 					<div id="navbar-title" class="navbar-collapse collapse">
 						<h:form id="menubarForm">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="#">#{msg['menubar.buyer']}</a></li>
+							<li>
+								<p:commandLink value="#{msg['menubar.buyer']}"/>
+							</li>
 							<li><a href="#">#{msg['menubar.seller']}</a></li>
 							<li><a href="#">#{msg['menubar.help']}</a></li>
 							<li><h:commandLink action="#{contentBean.goToRegister}"
 									value="#{msg['menubar.signup']}" /></li>
-							<li><h:commandLink action="#{contentBean.goToLogIn}"
-									value="#{msg['menubar.login']}" /></li>
+							<li><h:commandLink value="#{msg['menubar.login']}"  onclick="PF('logInModal').show(); return false;"/></li>
 							<li class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 										aria-expanded="false"> 
