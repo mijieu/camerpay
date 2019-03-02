@@ -9,42 +9,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
-@Entity
-@Table(name="TBLPERSON")
+
 public class TBLPERSON implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	/*@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="CNTID")
-	private BigDecimal CNTID;*/
-	@Id
-	@Column(name="TXTEMAIL")
 	private String TXTEMAIL;
-	@Column(name="TXTFIRSTNAME")
 	private String TXTFIRSTNAME;
-	@Column(name="TXTMIDDLENAME")
 	private String TXTMIDDLENAME;
-	@Column(name="TXTLASTNAME")
 	private String TXTLASTNAME;
-	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
-	@Column(name = "DATLASTCHANGED")
-	private Date DATLASTCHANGED = new Date();
-	@Column(name="TXTPASSWORD")
 	private String TXTPASSWORD;
 	
-	
-	
-	/*public BigDecimal getCNTID() {
-		return CNTID;
-	}
-
-	public void setCNTID(BigDecimal cNTID) {
-		CNTID = cNTID;
-	}*/
 	
 	public String getTXTFIRSTNAME() {
 		return TXTFIRSTNAME;
@@ -77,14 +54,6 @@ public class TBLPERSON implements Serializable{
 	public void setTXTEMAIL(String TXTEMAIL) {
 		this.TXTEMAIL = TXTEMAIL;
 	}
-
-	  public Date getDATLASTCHANGED() {
-	    return DATLASTCHANGED;
-	  }
-	
-	  public void setDATLASTCHANGED(Date lastChanged) {
-	    DATLASTCHANGED = lastChanged;
-	  }
 
 	public void setTXTPASSWORD(String TXTPASSWORD) {
 		this.TXTPASSWORD = TXTPASSWORD;
