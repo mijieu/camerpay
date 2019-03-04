@@ -2,12 +2,12 @@ package cm.busime.camerpay.db;
 
 import javax.ejb.Stateless;
 
-import cm.busime.camerpay.model.TBLPERSON;
+import cm.busime.camerpay.model.User;
 
 @Stateless
-public class RegisterService extends AbstractServiceDB<TBLPERSON>{
+public class RegisterService extends AbstractServiceDB<User>{
 	
 	public RegisterService () {
-		super(TBLPERSON.class);
+		super(User.class);
 	}
 }

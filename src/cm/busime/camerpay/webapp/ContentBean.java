@@ -1,6 +1,6 @@
 package cm.busime.camerpay.webapp;
 
-import cm.busime.camerpay.utils.Page;
+import cm.busime.camerpay.utils.Path;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
@@ -15,14 +15,14 @@ public class ContentBean extends AbstractServiceWeb {
      * @return
      */
     public void goToRegister() {
-        this.redirect(Page.Signup.path());
+        this.redirect(Path.Signup.path());
     }
     
     public void goToLogIn() {
-    	this.redirect(Page.Login.path());
+    	this.redirect(Path.Login.path());
     }
     
     public void goToError() {
-    	this.redirect(Page.UserHome.path());
+    	this.redirect(Path.UserHome.path());
     }
 }

@@ -6,7 +6,7 @@
 	<p:dialog widgetVar="logInModal" modal="true" header="#{msg['login']}"
 		class="modal-dialog modial-sm" showEffect="explode"
 		hideEffect="bounce" resizable="false">
-		<div class="modal-content">
+		<div>
 			<div class="modal-body">
 				<h:form id="loginModalform">
 					<p:messages id="loginModalMsg" showDetail="true" closable="true">
@@ -20,13 +20,8 @@
 						<h:commandButton value="#{msg['login.login']}"
 							action="#{login.login}"
 							styleClass="btn-general loginModalformbtnsub btn-sign" />
-						<!--h:commandButton value="#{msg['login.cancel']}"
-							styleClass="btn-general loginModalformbtnsub btn-sign" >
-							<f:ajax onevent="function(event){
-  												event.preventDefault();
-  												PF('logInModal).hide(); 
-  												return false;}"/>
-						</h:commandButton-->
+						<h:commandLink action="#{login.pwdforget}"
+												value="#{msg['login.pwdforget']}" />
 					</div>
 				</h:form>
 			</div>

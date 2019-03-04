@@ -2,8 +2,9 @@ package cm.busime.camerpay.webapp;
 
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.logging.Level;
 import java.util.logging.Logger;
-
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -12,9 +13,19 @@ import javax.faces.validator.ValidatorException;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.ws.rs.core.Response;
 
 import cm.busime.camerpay.db.RegisterService;
-import cm.busime.camerpay.model.TBLPERSON;
+import cm.busime.camerpay.model.User;
+import cm.busime.camerpay.restclient.RestClient;
+import cm.busime.camerpay.restclient.RestClientConfiguration;
+import cm.busime.camerpay.restclient.RestClientProducer;
+import cm.busime.camerpay.utils.Helper;
+import cm.busime.camerpay.utils.MessageUtils;
+import cm.busime.camerpay.utils.Path;
 
 
 @Named
@@ -27,33 +38,74 @@ public class Register implements Serializable{
 	
 	@Inject private RegisterService registerService;
 	
-	private final TBLPERSON person = new TBLPERSON();
+	@Inject
+	@RestClientConfiguration(externalService = RestClientProducer.CMR_PAY_SERVICE)
+	private transient RestClient cmrPayClient;
 	
-	/*@PostConstruct
-	private void init() {
-		person = ;
-	}*/
+	private User user = new User();
+	
+	private String validateSamePwd;
 
 	
-	public TBLPERSON getPerson() {
-		return person;
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	public String signup() {
+		String outcome = "";
+		
+		if (notValidPassword())
+			return outcome;
+		
+		final Response serviceResp = cmrPayClient.post(Path.APIUserRegistration.path(), user, 1000, 1000);
+		log.log(Level.INFO, "Server returned: " + serviceResp.toString());
+		log.log(Level.INFO, "response status: " + serviceResp.getStatus());
+	    switch(serviceResp.getStatus()) {
+	    	case 201://everything good
+	    		log.log(Level.INFO, "User properly created");
+	    		outcome = Path.Login.pathRedirected();
+	    		//sendMail() to activate
+	    		break;
+	    	case 202://email exist
+	    		outcome = "";
+	    		log.log(Level.INFO, "User already exists created");
+	    		break;
+	    	default:
+	    }
+		return outcome;
+	}
+	
+	private boolean notValidPassword() {
+	    return validateSamePwd == null || !validateSamePwd.equals(user.getTxtpassword());
+	  }
+	
+	public String getValidateSamePwd() {
+		return validateSamePwd;
 	}
 
-	/*public void setPerson(TBLPERSON person) {
-		this.person = person;
-	}*/
+	public void setValidateSamePwd(String validateSamePwd) {
+		this.validateSamePwd = validateSamePwd;
+	}
 
 	public void validateEmail(FacesContext context, UIComponent toValidate, Object value) throws ValidatorException {
 		String emailStr = (String) value;
-		if (-1 == emailStr.indexOf("@")) {
-			FacesMessage message = new FacesMessage("Invalid email address");
+		if (!emailStr.matches("(\\w[a-zA-Z_0-9+-.]*\\w|\\w+)@(\\w(\\w|-|\\.)*\\w|\\w+)\\.[a-zA-Z]+"))
+		{
+			FacesMessage message = new FacesMessage(MessageUtils.getLocalizedString("error.email.invalid"));
 			throw new ValidatorException(message);
 		}
 	}
 	
-	public String sign() {
-		registerService.save(person);
-		return "index.xhtml";
+	public void validateRePwd (FacesContext context, UIComponent toValidate, Object value) throws ValidatorException {
+		String rePwd = "" + value;
+		if (!rePwd.equals(user.getTxtpassword())) {
+			FacesMessage message = new FacesMessage(MessageUtils.getLocalizedString("error.repwd.invalid"));
+			throw new ValidatorException(message);
+		}
 	}
 
 }

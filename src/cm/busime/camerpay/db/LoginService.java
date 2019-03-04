@@ -2,17 +2,17 @@ package cm.busime.camerpay.db;
 
 import javax.ejb.Stateless;
 
-import cm.busime.camerpay.model.TBLPERSON;
+import cm.busime.camerpay.model.User;
 
 @Stateless
-public class LoginService extends AbstractServiceDB<TBLPERSON>{
+public class LoginService extends AbstractServiceDB<User>{
 	
 	public LoginService () {
-		super(TBLPERSON.class);
+		super(User.class);
 	}
 	
-	public TBLPERSON login (String email, String pwd) {
-		TBLPERSON idUser = (TBLPERSON) find (TBLPERSON.class, email);
-		return (idUser != null && idUser.getTXTPASSWORD().equals(pwd)) ? idUser : null; 
+	public User login (String email, String pwd) {
+		User idUser = (User) find (User.class, email);
+		return (idUser != null && idUser.getTxtpassword().equals(pwd)) ? idUser : null; 
 	}
 }

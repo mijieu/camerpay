@@ -3,16 +3,15 @@ package cm.busime.camerpay.utils;
 import java.text.MessageFormat;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 import javax.faces.application.FacesMessage;
 
-import cm.busime.camerpay.conroller.UserController;
-
 public final class MessageUtils {
 
-	private static Logger log = Logger.getLogger(UserController.class.getName());;
+	private static Logger log = Logger.getLogger(MessageUtils.class.getName());;
 
     public static final String NON_TRANSLATED = "#";
 
@@ -30,12 +29,13 @@ public final class MessageUtils {
         try {
             // delete index from array
             key = Pattern.compile("\\[[0-9]*]").matcher(key).replaceAll("[]");
-
-            ResourceBundle bundle = ResourceBundle.getBundle(FacesHelper.getFacesContext().getApplication()
-                    .getMessageBundle(), FacesHelper.getFacesContext().getViewRoot().getLocale());
+            log.log(Level.INFO, "key to localize:" + key);
+            ResourceBundle bundle = ResourceBundle.getBundle("messages");
             String value = bundle.getString(key);
+            log.log(Level.INFO, "Value found:" + value);
             return value;
         } catch ( MissingResourceException e ) {
+        	log.log(Level.INFO, "error whiel reading the key" + e.getMessage());
             return NON_TRANSLATED + key;
         }
     }

@@ -62,12 +62,15 @@ public class RestClient {
 	  }
 
 	  @Profile(ExternalSystemType.HTTP)
-	  public Response post(String resource, JsonObject request, Integer connectTimeout, Integer readTimeout) {
+	  public Response post(String resource, Object request, Integer connectTimeout, Integer readTimeout) {
 	    Response clientResponse = null;
 	    String url = serviceUrl(resource);
 	    long start = System.currentTimeMillis();
 	    readTimeout = readTimeout == null ? DEFAULT_TIMEOUT : readTimeout;
 	    connectTimeout = connectTimeout == null ? DEFAULT_TIMEOUT : connectTimeout;
+	    Entity<Object> entityRequest = Entity.entity(request, MediaType.APPLICATION_JSON);
+	    log.log(Level.INFO, "entityRequest: " + entityRequest.toString());
+	    log.log(Level.INFO, "url: " + url);
 	    try {
 	      clientResponse = client
 	          .property(ClientProperties.READ_TIMEOUT, readTimeout)
@@ -75,7 +78,47 @@ public class RestClient {
 	          .target(url)
 	          .request(MediaType.APPLICATION_JSON)
 	          .accept(MediaType.APPLICATION_JSON)
-	          .post(Entity.json(request.toString()));
+	          .post(entityRequest, Response.class);
+
+	    } catch (final Exception e) {
+	    	log.log(Level.INFO, "post request failed: " + e.getMessage());
+	      if (e.getCause() instanceof SocketTimeoutException) {
+	        // service timeout - must be returned 424 Dependency failed status code
+	        long time = System.currentTimeMillis() - start;
+	        final Object[] info = {
+	            (connectTimeout / 1000),
+	            (readTimeout / 1000),
+	            time
+	        };
+	        log.log(Level.SEVERE, e.getMessage());
+	        //throw new EmissionException(ErrorCode.EVE_VR_SERVICE_TIMEOUT, e, info);
+	      }
+	      log.log(Level.SEVERE, e.getMessage());
+	      //throw new EmissionException(ErrorCode.EXTERNAL_SERVICE_COMMUNICATION_ERROR, e, url, "background communication error");
+	    }
+
+	    if (clientResponse == null) {
+	    	log.log(Level.INFO, "Backend communication error: POST url=" + url + ", response is null.");
+	    }
+	    return clientResponse;
+	  }
+	  
+	  @Profile(ExternalSystemType.HTTP)
+	  public Response put(String resource, JsonObject request, Integer connectTimeout, Integer readTimeout) {
+	    Response clientResponse = null;
+	    String url = serviceUrl(resource);
+	    long start = System.currentTimeMillis();
+	    readTimeout = readTimeout == null ? DEFAULT_TIMEOUT : readTimeout;
+	    connectTimeout = connectTimeout == null ? DEFAULT_TIMEOUT : connectTimeout;
+	    log.log(Level.INFO, "PUT request to " + url);
+	    try {
+	      clientResponse = client
+	          .property(ClientProperties.READ_TIMEOUT, readTimeout)
+	          .property(ClientProperties.CONNECT_TIMEOUT, connectTimeout)
+	          .target(url)
+	          .request(MediaType.APPLICATION_JSON)
+	          .accept(MediaType.APPLICATION_JSON)
+	          .put(Entity.json(request.toString()));
 
 	    } catch (final Exception e) {
 	      if (e.getCause() instanceof SocketTimeoutException) {
@@ -95,8 +138,6 @@ public class RestClient {
 
 	    if (clientResponse == null) {
 	    	log.log(Level.INFO, "Backend communication error: POST url=" + url + ", response is null.");
-//	      LOGGER.error("Backend communication error: POST url=" + url + ", response is null.");
-//	      throw new EmissionException(ErrorCode.EXTERNAL_SERVICE_COMMUNICATION_ERROR, url, "no response available");
 	    }
 	    return clientResponse;
 	  }

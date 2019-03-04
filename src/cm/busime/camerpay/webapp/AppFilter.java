@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import cm.busime.camerpay.utils.Page;
+import cm.busime.camerpay.utils.Path;
 
 /**
  * Servlet Filter implementation class CharacterEncodingFilter
@@ -70,10 +70,10 @@ public class AppFilter implements Filter {
 		try {
 			HttpSession ses = req.getSession();
 			String reqUrl = req.getRequestURI();
-			log.log(Level.INFO, "reqUrl is " + reqUrl);
+			//log.log(Level.INFO, "reqUrl is " + reqUrl);
 			if ((ses != null && ses.getAttribute("username") != null) || reqUrl.indexOf("login.") >= 0 || resourceRequested) {
 				if (!resourceRequested) {
-					log.log(Level.INFO, "ressource is requested ");
+					//log.log(Level.INFO, "ressource is requested ");
 					//prevent browser to cache restricted ressource. So browser back button won't show up them anymore
 					resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
 	                resp.setHeader("Pragma", "no-cache"); // HTTP 1.0.
@@ -81,23 +81,23 @@ public class AppFilter implements Filter {
 				}
 				chain.doFilter(request, response);
 			}
-	        else if (ajaxRequest) {
+	        /*else if (ajaxRequest) {
 	        	log.log(Level.INFO, "AJAX request ");
 	            resp.setContentType("text/xml");
 	            resp.setCharacterEncoding("UTF-8");
 	            resp.getWriter().printf(AJAX_REDIRECT_XML, Page.Login.path()); // So, return special XML response instructing JSF ajax to send a redirect.
-	        }
+	        }*/
 	        else if (reqUrl.indexOf("/views/content/user/") >= 0){
-	        	log.log(Level.INFO, "req. a protected url ");
-	            resp.sendRedirect(Page.Login.path()); //
+	        	//log.log(Level.INFO, "req. a protected url ");
+	            resp.sendRedirect(Path.Login.path()); //
 	        }
 	        else {
-	        	log.log(Level.INFO, "No risk just continue the request");
+	        	//log.log(Level.INFO, "No risk just continue the request");
 	        	chain.doFilter(request, response); // So, just perform standard synchronous redirect.
 	        }
 		}catch(Exception e) {
 			log.log(Level.INFO, e.getMessage());
-			((HttpServletResponse) response).sendRedirect(Page.LoginError.pathRedirected());
+			((HttpServletResponse) response).sendRedirect(Path.LoginError.pathRedirected());
 		}
 	}
 

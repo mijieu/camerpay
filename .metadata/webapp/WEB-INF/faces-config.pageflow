@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15465241139510" configfile="/camerpay/webapp/WEB-INF/faces-config.xml">
   <nodes xsi:type="pageflow:PFPage" name="*" id="pf154740930025010" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf154740930025011 pf154758975781213" path="*"/>
-  <nodes xsi:type="pageflow:PFPage" name="views/content/user/home.jsf" id="pf154740930025012" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf154740930025011" path="/views/content/user/home.jsf"/>
+  <nodes xsi:type="pageflow:PFPage" name="views/content/user/home.jsf" id="pf154740930025012" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf154740930025011" path="/views/content/user/home.jsf"/>
   <nodes xsi:type="pageflow:PFPage" name="views/content/login.jsf" id="pf154758975781214" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf154758975781213" path="/views/content/login.jsf"/>
   <links id="pf154740930025011" target="pf154740930025012" source="pf154740930025010" outcome="show_user_home" redirect="true"/>
   <links id="pf154758975781213" target="pf154758975781214" source="pf154740930025010" outcome="show_login" redirect="true"/>

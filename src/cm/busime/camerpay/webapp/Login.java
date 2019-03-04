@@ -23,7 +23,8 @@ import javax.ws.rs.core.Response;
 import cm.busime.camerpay.restclient.RestClient;
 import cm.busime.camerpay.restclient.RestClientConfiguration;
 import cm.busime.camerpay.restclient.RestClientProducer;
-import cm.busime.camerpay.utils.Page;
+import cm.busime.camerpay.utils.Helper;
+import cm.busime.camerpay.utils.Path;
 
 @Named
 @ViewScoped
@@ -60,7 +61,7 @@ public class Login implements Serializable{
 		FacesContext context = FacesContext.getCurrentInstance();
 		if (getEmail() == null || getPassword() == null)
 			return null;
-		final Response serviceResp = cmrPayClient.post("?auth-string=ZG91Z2xhZGR3czoxMjM0NTU2Nzg5MA==", getDummyJson(), 1000, 1000);
+		final Response serviceResp = cmrPayClient.post("?auth-string=ZG91Z2xhZGR3czoxMjM0NTU2Nzg5MA==", Helper.getDummyJson(), 1000, 1000);
 		final int serviceResponseStatus = serviceResp.getStatus();
 	    final String entityString = serviceResp.readEntity(String.class);
 		log.log(Level.INFO, entityString);
@@ -70,12 +71,11 @@ public class Login implements Serializable{
 			session.setAttribute("username", email);
 			log.log(Level.INFO, "Login sucessfull redirecting to user home...");
 			return "show_user_home";
-			//return Page.UserHome.path();
 		}
 		else {
 			log.log(Level.WARNING, "Login NOT sucessfull redirecting to error page...");
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Login Failed"));
-			return Page.LoginError.pathRedirected();
+			return Path.LoginError.pathRedirected();
 		}
 	}
 	
@@ -85,17 +85,5 @@ public class Login implements Serializable{
 		session.invalidate();
 		return "show_login";
 	}
-	
-	private JsonObject getDummyJson() {
-		JsonObjectBuilder json = Json.createObjectBuilder();
-	    json.add("ckientTime", getDateFormat().format(new Date()));
-	    return json.build();
-	}
-	
-	protected DateFormat getDateFormat() {
-	    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.GERMANY);
-	    dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-	    return dateFormat;
-	  }
 	
 }

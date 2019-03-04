@@ -10,7 +10,7 @@ public class RestClientProducer {
   public RestClient createRestClient(final InjectionPoint injectionPoint) {
     final RestClientConfiguration annotation = injectionPoint.getAnnotated().getAnnotation(RestClientConfiguration.class);
     if (CMR_PAY_SERVICE.equals(annotation.externalService())) {
-      final String baseUrl = "http://localhost:8080/camerpay-api/create-user/auth-user";
+      final String baseUrl = "http://localhost:8080/camerpay-api/";
       final String apisecUsername = "dougladdws";
       final String apisecPassword = "12345567890";
       return new RestClient(baseUrl, apisecUsername, apisecPassword, annotation.gzipSupport());
